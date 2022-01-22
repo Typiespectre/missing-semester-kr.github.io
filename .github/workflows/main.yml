@@ -23,6 +23,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Lint Markdown
+      id: write-good
       uses: tomwhross/write-good-action@v1.5
     - name: write-good output
       run: echo "${{ steps.write-good.outputs.result }}"
