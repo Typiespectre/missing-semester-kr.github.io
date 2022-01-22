@@ -1,15 +1,15 @@
+name: Shellchecking
+
 on:
   push:
-    branches:
-      - master
-
-name: 'Trigger: Push action'
+    branches: [ master ]
 
 jobs:
-  shellcheck:
-    name: Shellcheck
+  build:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
-    - name: Run ShellCheck
-      uses: ludeeus/action-shellcheck@master
+
+    - name: shellcheck
+      uses: ludeeus/action-shellcheck@0.1.0
