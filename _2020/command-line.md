@@ -33,7 +33,7 @@ video:
 `Ctrl-C`를 입력하면 shell이 `SIGINT` 신호를 프로세스에 전달합니다.
 
 다음은 `SIGINT`를 캡처하여 무시하고 더 이상 멈추지 않는 파이썬 프로그램의 작은 예제 입니다. 
-이 프로그램을 제거하려면 `Ctrl-\`를 입력하여 `SIGQ` 신호를 보냅니다.
+이 프로그램을 제거하려면 `Ctrl-\`를 입력하여 `SIGQUIT` 신호를 보냅니다.
 
 ```python
 #!/usr/bin/env python
@@ -62,7 +62,7 @@ I got a SIGINT, but I am not stopping
 30^\[1]    39913 quit       python sigint.py
 ```
 
-`SIGINT`와 `SIGQ`는 보통 터미널 관련 요청과 관련되어 있는 반면, 보다 멋있게 종료하는 과정을 요청하는 일반적인 신호는 `SIGTERM` 신호입니다.
+`SIGINT`와 `SIGQUIT`는 보통 터미널 관련 요청과 관련되어 있는 반면, 보다 멋있게 종료하는 과정을 요청하는 일반적인 신호는 `SIGTERM` 신호입니다.
 이 신호를 보내기 위해 [`kill`](https://www.man7.org/linux/man-pages/man1/kill.1.html) 명령을 `kill -TERM <PID>`라는 구문과 함께 사용할 수 있습니다.
 
 ## 프로세스의 일시 중지와 백그라운드
@@ -71,7 +71,7 @@ I got a SIGINT, but I am not stopping
 예를 들어 `SIGSTOP`은 프로세스를 일시 중지시킵니다. 
 터미널에서 `Ctrl-Z`를 입력하면 shell이 Terminal Stop(터미널 버전 `SIGSTOP`)을 줄인 `SIGTSTP` 신호를 보냅니다.
 
-그 다음 각각 [`fg`](https://www.man7.org/linux/man-pages/man1/fg.1p.html) 또는 [`bg`](http://man7.org/linux/man-pages/man1/bg.1p.html),)를 사용하여 포어그라운드 또는 백그라운드에서 일시 중지된 작업을 계속할 수 있습니다.
+그 다음 각각 [`fg`](https://www.man7.org/linux/man-pages/man1/fg.1p.html) 또는 [`bg`](http://man7.org/linux/man-pages/man1/bg.1p.html) 를 사용하여 포어그라운드 또는 백그라운드에서 일시 중지된 작업을 계속할 수 있습니다.
 
 [`jobs`](https://www.man7.org/linux/man-pages/man1/jobs.1p.html) 명령어에는 현재 터미널 세션과 관련된 미완료 작업 목록을 보여줍니다. 
 목록의 pid([`pgrep`](https://www.man7.org/linux/man-pages/man1/pgrep.1.html) 사용)를 이용하여 해당 작업을 참조할 수 있습니다.
@@ -174,7 +174,7 @@ $ jobs
 - **Panes** - vim 분할처럼 창은 동일한 시각 디스플레이에 여러 개의 shell을 가질 수 있음
     + `<C-b> "` 현재 창을 가로로 나누기
     + `<C-b> %` 현재 창을 세로로 나누기
-    + `<C-b> <direction>` _direction_ 방향의 창으로 이동. 여기서 Direction은 화살표 키를 의미
+    + `<C-b> <direction>` _direction_ 방향의 창으로 이동. 여기서 direction은 화살표 키를 의미
     + `<C-b> z` 현재 창의 확대/축소 전환
     + `<C-b> [` scrollback 시작. `<space>`를 누르면 선택을 시작하고 `<enter>`를 누르면 선택 내용이 복사
     + `<C-b> <space>` 창 배열을 순환
@@ -320,7 +320,7 @@ ssh foo@bar.mit.edu
 
 ## SSH키(SSH Keys)
 
-키 기반 인증은 공개키 암호화를 이용하여 클라이언트가 키를 노출하지 않고 비밀 개인 키(private key)를 소유하고 있음을 서버에 증명합니다. 이렇게하면 매번 암호를 다시 입력 할 필요가 없습니다. 그럼에도 불구하고 개인 키 (종종`~ / .ssh / id_rsa` 그리고 최근에는`~ / .ssh / id_ed25519`)가 사실상 암호이이므로 암호처럼 취급하면 됩니다.
+키 기반 인증은 공개키 암호화를 이용하여 클라이언트가 키를 노출하지 않고 비밀 개인 키(private key)를 소유하고 있음을 서버에 증명합니다. 이렇게하면 매번 암호를 다시 입력 할 필요가 없습니다. 그럼에도 불구하고 개인 키 (종종`~ / .ssh / id_rsa` 그리고 최근에는`~ / .ssh / id_ed25519`)가 사실상 암호이므로 암호처럼 취급하면 됩니다.
 
 
 ### 키 생성(Key generation)
@@ -342,7 +342,7 @@ SSH 키를 사용하여 GitHub로 푸시를 구성한 적이 있다면, [here](h
 cat .ssh/id_ed25519.pub | ssh foobar@remote 'cat >> ~/.ssh/authorized_keys'
 ```
 
-`ssh-copy-id`를 사용하여 더 간단게 사용할 수 있습니다.
+`ssh-copy-id`를 사용하여 더 간단하게 사용할 수 있습니다.
 
 ```bash
 ssh-copy-id -i .ssh/id_ed25519.pub foobar@remote
